@@ -1,110 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080d18">
-  <title>Learning Timer Demo</title>
-  <style>
-    :root { color-scheme: dark; --bg:#080d18; --panel:rgba(17,28,48,.88); --line:rgba(99,165,255,.25); --accent:#36a3ff; --mint:#5ce1c2; --text:#f4f7fb; --muted:#a9b7ca; }
-    * { box-sizing:border-box }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; font-family:Inter,system-ui,Arial,sans-serif; color:var(--text); background:radial-gradient(ellipse at 20% 10%,#12345b 0,transparent 42%),radial-gradient(ellipse at 90% 90%,#073c42 0,transparent 35%),var(--bg); }
-    .orb { position:fixed; width:300px; height:300px; border-radius:50%; filter:blur(100px); opacity:.22; pointer-events:none; background:var(--accent); top:-140px; right:-90px }
-    main { position:relative; width:min(100%,440px); padding:34px 28px 28px; text-align:center; border:1px solid var(--line); border-radius:28px; background:var(--panel); box-shadow:0 24px 80px #0008; backdrop-filter:blur(18px) }
-    .eyebrow { display:inline-flex; gap:8px; align-items:center; padding:8px 13px; border:1px solid var(--line); border-radius:99px; color:var(--mint); font-size:11px; font-weight:800; letter-spacing:1.5px }
-    .dot { width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 12px var(--mint) }
-    h1 { margin:20px 0 8px; font-size:clamp(26px,7vw,34px); letter-spacing:-1px }
-    .sub { margin:0 auto 28px; max-width:290px; color:var(--muted); font-size:14px; line-height:1.6 }
-    .clock { margin:0 auto 24px; padding:24px 12px; border:1px solid var(--line); border-radius:20px; background:linear-gradient(145deg,#102846,#0b1729); font-size:clamp(52px,15vw,70px); font-weight:850; font-variant-numeric:tabular-nums; letter-spacing:2px; text-shadow:0 0 28px #36a3ff40 }
-    .field { display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:20px; color:var(--muted); font-size:13px }
-    input { width:86px; padding:10px; border:1px solid var(--line); border-radius:10px; background:#081322; color:var(--text); text-align:center; font:inherit }
-    .actions { display:grid; grid-template-columns:1fr 1fr; gap:12px }
-    button { min-height:48px; border:1px solid var(--line); border-radius:13px; color:var(--text); background:#14243a; font:700 14px inherit; cursor:pointer; transition:transform .15s,filter .15s }
-    button:hover { transform:translateY(-1px); filter:brightness(1.15) }
-    button.primary { grid-column:1/-1; border-color:#6cc6ff; background:linear-gradient(110deg,#0876d8,#159dff); box-shadow:0 10px 25px #087fff35 }
-    button:focus-visible,input:focus-visible { outline:2px solid var(--mint); outline-offset:3px }
-    .status { min-height:22px; margin:18px 0 0; color:var(--mint); font-size:12px }
-    footer { margin-top:20px; color:#71839b; font-size:10px; letter-spacing:1.2px; text-transform:uppercase }
-    @media(max-width:420px) { main { padding:28px 20px 24px } }
-    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none!important } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b15">
+<title>Learning Timer — Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#087fff;--mint:#00d6b2;--panel:#07172c;--text:#f8fafc}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;background:#050505;color:var(--text)}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:28px 16px;overflow-x:hidden;background:radial-gradient(ellipse at 50% 20%,#071d3c 0%,#07172c 48%,#050505 100%)}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:.35;z-index:0;pointer-events:none;animation:float 12s infinite ease-in-out alternate}
+.orb-1{width:360px;height:360px;background:#087fff;top:-140px;left:-130px}
+.orb-2{width:420px;height:420px;background:#087fff;bottom:-190px;right:-140px;animation-delay:-6s}
+@keyframes float{0%{transform:translate(0,0) scale(1)}100%{transform:translate(45px,55px) scale(1.12)}}
+.glass-card{width:min(100%,420px);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;padding:34px 28px 30px;border:1px solid rgba(25,167,255,.30);border-radius:32px;background:linear-gradient(145deg,rgba(10,35,62,.94),rgba(5,17,34,.97));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 24px 65px #000b,0 0 35px #087fff10,inset 0 1px #ffffff0a;z-index:2}
+.glass-card:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,#087fff,#8af5e3,#087fff,transparent)}
+.logo-stage{position:relative;width:142px;height:142px;margin:4px auto 25px;display:grid;place-items:center}
+.rotating-ring{position:absolute;inset:-4px;z-index:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,transparent 22%,#087fff 42%,#00d6b2 68%,#087fff 88%,transparent 100%);animation:rotate 3s linear infinite}
+.rotating-ring:after{content:"";position:absolute;inset:3px;background:#07172c;border-radius:50%}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.logo-inner{position:relative;z-index:2;width:132px;height:132px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 25%,#087c9f,#061b35 70%);border:2px solid #087f9f;box-shadow:0 0 28px #087fff25}
+.timer-symbol{font-size:57px;color:#8af5e3;text-shadow:0 0 24px #087fff88}
+.live{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;margin-bottom:17px;border:1px solid #176b91;border-radius:99px;color:#8af5e3;font-size:11px;font-weight:800;letter-spacing:1.8px;background:#092b43}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#00d6b2;box-shadow:0 0 10px #00d6b2;animation:blink 1.5s infinite}
+@keyframes blink{50%{opacity:.45}}
+h1{font-size:32px;line-height:1.15;font-weight:900;letter-spacing:.7px;margin:0 0 9px;color:#fff;text-shadow:0 2px 20px #087fff25}
+h1 span{color:#00d6b2}
+.subtitle{font-size:14px;font-weight:600;color:#b8c9d8;margin:0 0 23px}
+.features{display:flex;align-items:center;justify-content:center;gap:18px;width:100%;margin-bottom:20px;padding:13px 10px;border:1px solid #ffffff12;border-radius:14px;background:#ffffff08;box-shadow:inset 0 1px #ffffff06;font-size:12px;font-weight:700;color:#e8f3fa}
+.features strong{color:#00d6b2;margin-right:6px}
+.feature-divider{width:1px;height:20px;background:#ffffff20}
+.app-info{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;border:1px solid #087f9f;border-radius:17px;background:linear-gradient(135deg,#0a2a4a,#06172d);padding:15px;margin-bottom:17px;box-shadow:inset 0 0 22px #087fff09;position:relative;overflow:hidden}
+.app-info:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,#087fff0c,transparent);pointer-events:none}
+.info-label{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:#b6d4e8}
+.clock{font-size:38px;line-height:1.2;font-weight:900;letter-spacing:2px;color:#00d6b2;text-shadow:0 0 14px #087fff3c;font-variant-numeric:tabular-nums}
+.field{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 17px;color:#b6d4e8;font-size:12px;font-weight:600}
+input{width:78px;padding:9px 8px;border:1px solid #176b91;border-radius:9px;background:#06172d;color:#fff;text-align:center;font:600 13px Inter,Arial,sans-serif}
+.actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{min-height:48px;border-radius:13px;border:1px solid #176b91;background:#092b43;color:#eaf7ff;font:800 13px Inter,Arial,sans-serif;cursor:pointer;transition:transform .2s,filter .2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.1)}
+button.primary{grid-column:1/-1;min-height:62px;border:1px solid #8af5e3;background:linear-gradient(110deg,#0876d8,#149cff 55%,#064fa8);font-size:16px;letter-spacing:1px;box-shadow:0 12px 28px #00a9cf40,inset 0 1px #a8eaff}
+button:focus-visible,input:focus-visible{outline:2px solid #8af5e3;outline-offset:3px}
+.status{min-height:18px;font-size:11px;color:#8af5e3;margin:14px 0 0}
+.secure-note{font-size:10px;color:#9bb9c8;margin:16px 0 0;text-transform:uppercase;letter-spacing:1.8px;font-weight:700;opacity:.8}
+@media(max-width:480px){body{padding:16px 12px}.glass-card{padding:30px 21px 26px;border-radius:27px}.logo-stage{width:126px;height:126px;margin-bottom:22px}.logo-inner{width:116px;height:116px}.timer-symbol{font-size:50px}h1{font-size:29px}.subtitle{font-size:13px;margin-bottom:20px}.features{gap:12px;font-size:11px;padding:12px 7px}.app-info{margin-bottom:15px;padding:14px}.clock{font-size:35px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <div class="orb" aria-hidden="true"></div>
-  <main>
-    <div class="eyebrow"><span class="dot"></span> CODING PRACTICE PROJECT</div>
-    <h1>Learning Timer</h1>
-    <p class="sub">A simple countdown timer demo built with HTML, CSS and JavaScript.</p>
-    <div class="clock" id="clock" role="timer" aria-live="off">05:00</div>
-    <label class="field">Set minutes
-      <input id="minutes" type="number" min="1" max="180" value="5" inputmode="numeric">
-    </label>
-    <div class="actions">
-      <button class="primary" id="startPause" type="button">Start timer</button>
-      <button id="reset" type="button">Reset</button>
-      <button id="set" type="button">Apply time</button>
-    </div>
-    <p class="status" id="status" role="status">Ready when you are.</p>
-    <footer>Demo only · No betting or wagering features</footer>
-  </main>
-  <script>
-    const clock = document.querySelector('#clock');
-    const minutesInput = document.querySelector('#minutes');
-    const startPause = document.querySelector('#startPause');
-    const statusText = document.querySelector('#status');
-    let remaining = 300;
-    let intervalId = null;
-
-    function render() {
-      const mins = Math.floor(remaining / 60);
-      const secs = remaining % 60;
-      clock.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-    }
-    function stop() {
-      if (intervalId !== null) clearInterval(intervalId);
-      intervalId = null;
-      startPause.textContent = 'Start timer';
-    }
-    function applyTime() {
-      stop();
-      const mins = Number(minutesInput.value);
-      if (!Number.isInteger(mins) || mins < 1 || mins > 180) {
-        statusText.textContent = 'Enter a whole number from 1 to 180.';
-        return;
-      }
-      remaining = mins * 60;
-      render();
-      statusText.textContent = 'Time updated.';
-    }
-    startPause.addEventListener('click', () => {
-      if (intervalId !== null) {
-        stop();
-        statusText.textContent = 'Timer paused.';
-        return;
-      }
-      if (remaining <= 0) {
-        statusText.textContent = 'Set a new time to start again.';
-        return;
-      }
-      startPause.textContent = 'Pause timer';
-      statusText.textContent = 'Timer is running.';
-      intervalId = setInterval(() => {
-        remaining -= 1;
-        render();
-        if (remaining <= 0) {
-          stop();
-          statusText.textContent = 'Time is up!';
-        }
-      }, 1000);
-    });
-    document.querySelector('#reset').addEventListener('click', () => {
-      stop();
-      remaining = Math.max(1, Number(minutesInput.value) || 5) * 60;
-      render();
-      statusText.textContent = 'Timer reset.';
-    });
-    document.querySelector('#set').addEventListener('click', applyTime);
-    render();
-  </script>
+<div class="bg-orb orb-1" aria-hidden="true"></div><div class="bg-orb orb-2" aria-hidden="true"></div>
+<main class="glass-card">
+  <div class="logo-stage" aria-label="Timer icon"><div class="rotating-ring" aria-hidden="true"></div><div class="logo-inner"><span class="timer-symbol" aria-hidden="true">◷</span></div></div>
+  <div class="live"><span class="live-dot"></span> LEARNING DEMO</div>
+  <h1>LEARNING <span>TIMER</span></h1>
+  <p class="subtitle">Simple countdown timer application</p>
+  <div class="features"><span><strong>◷</strong>Countdown</span><span class="feature-divider"></span><span><strong>↻</strong>Custom Time</span></div>
+  <section class="app-info" aria-label="Countdown display"><div class="info-label">TIME REMAINING</div><div class="clock" id="clock" role="timer" aria-live="off">05:00</div></section>
+  <label class="field">Set minutes <input id="minutes" type="number" min="1" max="180" value="5" inputmode="numeric"></label>
+  <div class="actions"><button class="primary" id="startPause" type="button">START TIMER</button><button id="reset" type="button">RESET</button><button id="set" type="button">APPLY TIME</button></div>
+  <p class="status" id="status" role="status">Ready when you are.</p>
+  <p class="secure-note">CODING PRACTICE PROJECT</p>
+</main>
+<script>
+const clock=document.getElementById('clock'),minutesInput=document.getElementById('minutes'),startPause=document.getElementById('startPause'),statusText=document.getElementById('status');
+let remaining=300,intervalId=null;
+function render(){const m=Math.floor(remaining/60),s=remaining%60;clock.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function stop(){if(intervalId!==null)clearInterval(intervalId);intervalId=null;startPause.textContent='START TIMER'}
+function applyTime(){stop();const m=Number(minutesInput.value);if(!Number.isInteger(m)||m<1||m>180){statusText.textContent='Enter a whole number from 1 to 180.';return}remaining=m*60;render();statusText.textContent='Time updated.'}
+startPause.addEventListener('click',()=>{if(intervalId!==null){stop();statusText.textContent='Timer paused.';return}if(remaining<=0){statusText.textContent='Set a new time to start again.';return}startPause.textContent='PAUSE TIMER';statusText.textContent='Timer is running.';intervalId=setInterval(()=>{remaining--;render();if(remaining<=0){stop();statusText.textContent='Time is up!'}},1000)});
+document.getElementById('reset').addEventListener('click',()=>{stop();remaining=Math.max(1,Number(minutesInput.value)||5)*60;render();statusText.textContent='Timer reset.'});
+document.getElementById('set').addEventListener('click',applyTime);render();
+</script>
 </body>
 </html>
