@@ -4,52 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090909">
-<meta name="description" content="Kalyan MTK app landing-page UI preview for educational web-design practice.">
-<title>Kalyan MTK — App UI Preview</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Kalyan MTK Android application download page."><title>Kalyan MTK — Android App</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--gold:#f6c453;--gold-bright:#ffe7a0;--gold-deep:#a96812;--muted:#c5bba9;--black:#090909}
+:root{--red:#d89427;--red-light:#ffe7a0;--red-dark:#8c5412;--panel:#111010;--text:#f8fafc}
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:#fff}
-body{min-height:100vh;display:grid;place-items:center;padding:30px 16px;background:radial-gradient(ellipse at 50% 18%,#302313 0%,#17130e 38%,#08090b 78%,#050506 100%);overflow-x:hidden}
-body:before,body:after{content:"";position:fixed;width:380px;height:380px;border-radius:50%;filter:blur(115px);opacity:.23;pointer-events:none}
-body:before{background:#d89427;top:-190px;left:-170px}
-body:after{background:#b8791e;right:-190px;bottom:-200px}
-.card{width:min(100%,526px);position:relative;isolation:isolate;overflow:hidden;text-align:center;padding:43px 35px 37px;border:1px solid #d9a23d88;border-radius:39px;background:linear-gradient(155deg,rgba(30,26,21,.98),rgba(8,9,11,.99) 72%);box-shadow:0 28px 80px #000b,0 0 36px #d99a2a16,inset 0 1px #fff2}
-.card:before{content:"";position:absolute;z-index:-1;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,#b8791e,#fff0b3,#e9ae3e,transparent)}
-.logo-wrap{width:178px;height:178px;margin:0 auto 31px;position:relative;display:grid;place-items:center}
-.logo-wrap:before{content:"";position:absolute;inset:0;border-radius:30%;background:conic-gradient(#8c5412,#ffe7a0,#c08020,#fff0bd,#a66b19,#8c5412);animation:spin 9s linear infinite;filter:drop-shadow(0 0 14px #e5a63255)}
-.logo-wrap:after{content:"";position:absolute;inset:5px;border-radius:29%;background:#0b0b0c}
-.logo{position:relative;z-index:1;width:160px;height:160px;border-radius:27%;object-fit:contain;background:#0a0a0b;box-shadow:0 0 30px #e1a83b2e}
-@keyframes spin{to{transform:rotate(360deg)}}
-.pill{display:inline-flex;align-items:center;gap:10px;padding:11px 21px;margin-bottom:21px;border:1px solid #bd862d;border-radius:99px;background:linear-gradient(110deg,#241a0d,#17130d);color:#ffe2a0;font-size:13px;font-weight:800;letter-spacing:1.4px}
-.dot{width:10px;height:10px;border-radius:50%;background:#f3bd4c;box-shadow:0 0 12px #f3bd4c}
-h1{margin:0 0 10px;font-size:clamp(28px,6vw,40px);line-height:1.12;font-weight:900;letter-spacing:.3px;color:#fff4d7}
-h1 span{background:linear-gradient(100deg,#fff0b5,#e8ad3e 48%,#fff0b5);-webkit-background-clip:text;background-clip:text;color:transparent}
-.subtitle{margin:0 0 28px;color:#c9c0b2;font-size:16px;font-weight:600}
-.features{display:flex;justify-content:center;align-items:center;gap:21px;margin:0 0 29px;padding:17px 12px;border:1px solid #d6a34738;border-radius:17px;background:linear-gradient(110deg,#ffffff08,#d49a2b0d);color:#eee5d5;font-size:14px;font-weight:750}
-.features b{color:#f4c65f;margin-right:7px}
-.sep{height:25px;width:1px;background:#d7b36b55}
-.download{width:100%;min-height:85px;border:1px solid #ffe6a0;border-radius:20px;background:linear-gradient(105deg,#9b6118,#f2c45d 48%,#b8791e);color:#17110a;font:900 22px Inter,Arial,sans-serif;letter-spacing:.5px;box-shadow:0 13px 30px #d18c2630,inset 0 1px #fff9;opacity:1;cursor:pointer;transition:transform .18s ease,filter .18s ease}.download:hover{filter:brightness(1.08);transform:translateY(-2px)}.download:active{transform:translateY(0)}
-.download span{font-size:28px;margin-right:12px;vertical-align:-2px}
-.notice{margin:23px 0 0;color:#e2bd72;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
-.help{max-width:430px;margin:13px auto 0;color:#c3b9a8;font-size:13px;line-height:1.75;font-weight:500}
-@media(max-width:520px){body{padding:17px 12px}.card{padding:34px 21px 29px;border-radius:29px}.logo-wrap{width:150px;height:150px;margin-bottom:26px}.logo{width:136px;height:136px}.features{gap:12px;font-size:12px;padding:15px 8px}.download{min-height:72px;font-size:19px}.subtitle{font-size:14px}}
-@media(prefers-reduced-motion:reduce){.logo-wrap:before{animation:none}}
+html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;background:#050505;color:var(--text)}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:28px 16px;overflow-x:hidden;background:radial-gradient(ellipse at 50% 20%,#302313 0%,#17130e 48%,#050505 100%)}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:.35;z-index:0;pointer-events:none;animation:float 12s infinite ease-in-out alternate}
+.orb-1{width:360px;height:360px;background:#d89427;top:-140px;left:-130px}
+.orb-2{width:420px;height:420px;background:#b8791e;bottom:-190px;right:-140px;animation-delay:-6s}
+@keyframes float{0%{transform:translate(0,0) scale(1)}100%{transform:translate(45px,55px) scale(1.12)}}
+.glass-card{width:min(100%,420px);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;padding:34px 28px 30px;border:1px solid rgba(217,162,61,.48);border-radius:32px;background:linear-gradient(145deg,rgba(30,26,21,.96),rgba(8,9,11,.98));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 24px 65px #000b,0 0 35px #087fff10,inset 0 1px #ffffff0a;z-index:2}
+.glass-card:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,#b8791e,#fff0b3,#e9ae3e,transparent)}
+.logo-stage{position:relative;width:142px;height:142px;margin:4px auto 25px;display:grid;place-items:center}
+.rotating-ring{position:absolute;inset:-4px;z-index:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,transparent 22%,#a96812 42%,#ffe7a0 68%,#d89427 88%,transparent 100%);animation:rotate 3s linear infinite}
+.rotating-ring:after{content:"";position:absolute;inset:3px;z-index:0;background:#17130e;border-radius:50%}
+@keyframes rotate{to{transform:rotate(360deg)}}
+.logo-inner{position:relative;z-index:2;isolation:isolate;overflow:hidden;width:132px;height:132px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 25%,#4b3012,#120d07 70%);border:2px solid #a96812;box-shadow:0 0 28px #d8942725}
+.logo-image{position:relative;z-index:3;display:block;width:100%;height:100%;object-fit:contain;border-radius:50%}
+.live{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;margin-bottom:17px;border:1px solid #bd862d;border-radius:99px;color:#ffe2a0;font-size:11px;font-weight:800;letter-spacing:1.8px;background:#241a0d}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#f3bd4c;box-shadow:0 0 10px #f3bd4c;animation:blink 1.5s infinite}
+@keyframes blink{50%{opacity:.45}}
+h1{font-size:32px;line-height:1.15;font-weight:900;letter-spacing:.7px;margin:0 0 9px;color:#fff;text-shadow:0 2px 20px #d8942725}
+h1 span{color:#ffe7a0}
+.subtitle{font-size:14px;font-weight:600;color:#b8aeae;margin:0 0 23px}
+.features{display:flex;align-items:center;justify-content:center;gap:18px;width:100%;margin-bottom:24px;padding:13px 10px;border:1px solid #d6a34738;border-radius:14px;background:#ffffff08;box-shadow:inset 0 1px #ffffff06;font-size:12px;font-weight:700;color:#e8dddd}
+.features i{color:#f4c65f;margin-right:6px}
+.feature-divider{width:1px;height:20px;background:#ffffff20}
+.app-info{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;border:1px solid #087f9f;border-radius:17px;background:linear-gradient(135deg,#0a2a4a,#06172d);padding:15px;margin-bottom:20px;box-shadow:inset 0 0 22px #087fff09;position:relative;overflow:hidden}
+.app-info:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,#087fff0c,transparent);pointer-events:none}
+.info-label{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:#b6d4e8}
+.info-value{font-size:25px;line-height:1.2;font-weight:900;letter-spacing:1px;color:#00d6b2;text-shadow:0 0 14px #087fff3c;font-variant-numeric:tabular-nums}
+.download{width:100%;min-height:68px;border-radius:16px;border:1px solid #ffe6a0;background:linear-gradient(110deg,#9b6118,#f2c45d 55%,#b8791e);color:#17110a;display:flex;align-items:center;justify-content:center;gap:13px;font-size:17px;font-weight:900;letter-spacing:1.2px;text-decoration:none;box-shadow:0 12px 28px #d18c2640,inset 0 1px #fff9;cursor:pointer;transition:transform .2s,filter .2s;animation:pulse-shadow 2.5s infinite}
+.download:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.download i{font-size:25px}
+@keyframes pulse-shadow{0%{box-shadow:0 0 0 0 #d8942760}70%{box-shadow:0 0 0 15px #d8942700}100%{box-shadow:0 0 0 0 #d8942700}}
+.secure-note{font-size:10px;color:#c5bba9;margin:19px 0 0;text-transform:uppercase;letter-spacing:1.8px;font-weight:700;opacity:.8}
+.install-note{width:100%;font-size:11px;line-height:1.6;color:#c3b9a8;margin:10px 0 0;text-align:center}
+@media(max-width:480px){body{padding:16px 12px}.glass-card{padding:30px 21px 26px;border-radius:27px}.logo-stage{width:126px;height:126px;margin-bottom:22px}.logo-inner{width:116px;height:116px}h1{font-size:29px}.subtitle{font-size:13px;margin-bottom:20px}.features{gap:12px;font-size:11px;padding:12px 7px}.app-info{margin-bottom:17px;padding:14px}.download{min-height:64px;font-size:16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '982246161626578');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=982246161626578&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
-<main class="card">
-  <div class="logo-wrap"><img class="logo" src="https://raw.githubusercontent.com/ashoksahani7082/kalyan-mtk/main/WhatsApp%20Image%202026-11-14%20at%2020.37.28.jpeg" alt="Kalyan MTK logo"></div>
-  <div class="pill"><span class="dot"></span> ANDROID APP</div>
-  <h1>KALYAN <span>MTK</span></h1>
-  <p class="subtitle">Android Application — UI Preview</p>
-  <div class="features">
-    <span><b>▣</b>Android APK</span><span class="sep"></span><span><b>ϟ</b>Direct Download</span>
+<div class="bg-orb orb-1" aria-hidden="true"></div>
+<div class="bg-orb orb-2" aria-hidden="true"></div>
+<main class="glass-card">
+  <div class="logo-stage" aria-label="Kalyan MTK app icon">
+    <div class="rotating-ring" aria-hidden="true"></div>
+    <div class="logo-inner"><img class="logo-image" src="https://raw.githubusercontent.com/ashoksahani7082/kalyan-mtk/main/WhatsApp%20Image%202026-11-14%20at%2020.37.28.jpeg" alt="Kalyan MTK logo"></div>
   </div>
-  <a class="download" href="https://raw.githubusercontent.com/ashoksahani7082/kalyan-mtk/main/Kalyan.apk.apk" download="Kalyan.apk" style="display:flex;align-items:center;justify-content:center;text-decoration:none"><span>↓</span> DOWNLOAD APK</a>
+  <div class="live"><span class="live-dot"></span> ANDROID APP</div>
+  <h1>KALYAN <span>MTK</span></h1>
+  <p class="subtitle">Android Application</p>
+  <div class="features">
+    <span><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>Android APK</span>
+    <span class="feature-divider" aria-hidden="true"></span>
+    <span><i class="fa-solid fa-bolt" aria-hidden="true"></i>Direct Download</span>
+  </div>
+  <a class="download" href="https://raw.githubusercontent.com/ashoksahani7082/kalyan-mtk/main/Kalyan.apk.apk" download="Kalyan.apk">
+    <i class="fa-solid fa-download" aria-hidden="true"></i><span>DOWNLOAD APK</span>
+  </a>
+  <p class="secure-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> &nbsp;DIRECT APK DOWNLOAD</p>
+  <p class="install-note">Download the APK, open the file on your Android device, and follow the installation prompts.</p>
 </main>
 </body>
 </html>
